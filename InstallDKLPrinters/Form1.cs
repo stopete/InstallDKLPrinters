@@ -68,13 +68,13 @@ namespace InstallDKLPrinters
 
                 var printers = new Dictionary<string, string>
                 {
-                    { "Library Printer 5", "172.20.112.43" },
-                    { "Library Printer 1", "172.20.112.35" },
-                    { "Library Printer 3", "172.20.112.42" },
-                    { "Library Printer 2", "172.20.112.27" },
-                    { "Library Printer 4", "172.20.112.45" },
-                    { "Library Printer 6", "172.20.112.41" },
-                    { "Library Printer 7", "172.20.112.47" }
+                    { "Library Printer 5", "Add IP Address" },
+                    { "Library Printer 1", "Add IP Address" },
+                    { "Library Printer 3", "Add IP Address" },
+                    { "Library Printer 2", "Add IP Address" },
+                    { "Library Printer 4", "Add IP Address" },
+                    { "Library Printer 6", "Add IP Address" },
+                    { "Library Printer 7", "Add IP Address" }
                 };
 
                 int totalPrinters = printers.Count;
