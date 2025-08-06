@@ -1,0 +1,101 @@
+﻿Clear-Host
+
+# Function that creates a registry key the contains the path to the Xerox configuration path 
+Function CreateRegkey {
+    $Key = "HKLM:\SOFTWARE\Xerox\PrinterDriver\V5.0\Configuration"
+    if (!(Test-Path -Path $Key)) {
+        $null = New-Item -Path $Key -Force
+        Set-ItemProperty $Key -Name RepositoryUNCPath -Value "C:\Windows" -Type String
+    }
+}
+
+# Set execution policy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
+
+# Prevent device metadata from being downloaded from network
+$RegKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata\"
+Set-ItemProperty -Path $RegKey -Name PreventDeviceMetadataFromNetwork -Value 1
+
+# Determine working directory
+$workingdirectory = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\')
+if ($workingdirectory -eq $PSHOME.TrimEnd('\')) {
+    $workingdirectory = $PSScriptRoot
+}
+
+# Xerox driver name
+$DriverName = "Xerox Global Print Driver PCL6"
+$path = $workingdirectory + "\"
+
+# Define paths to supporting files
+$pnputilpath     = $path + "pnputil.exe"
+$configxmlpath   = $path + "CommonConfiguration.xml"
+
+# Detect system architecture and choose correct driver
+$arch = (Get-CimInstance Win32_Processor).Architecture
+# Architecture Reference:
+# 0 = x86, 9 = x64, 12 = ARM64
+if ($arch -eq 12) {
+    # ARM64
+    $DriverInf  = $path + "UNIV_5.1055.3.0_PCL6_ARM64_Driver.inf\x3UNIVX.inf"
+    $DriverPath = $path + "UNIV_5.1055.3.0_PCL6_ARM64_Driver.inf"
+    Write-Host "ARM-based system detected. Using ARM64 driver." -ForegroundColor Cyan
+} else {
+    # x64
+    $DriverInf  = $path + "UNIV_5.759.5.0_PCL6_x64_Driver.inf\x3UNIVX.inf"
+    $DriverPath = $path + "UNIV_5.759.5.0_PCL6_x64_Driver.inf"
+    Write-Host "x64-based system detected. Using x64 driver." -ForegroundColor Cyan
+}
+
+# Copy required files to Windows directory
+Copy-Item -Path $pnputilpath -Destination 'C:\Windows\' -Force -Confirm:$False
+Copy-Item -Path $configxmlpath -Destination 'C:\Windows\' -Force -Confirm:$False
+
+# Hashtable with printer names and IPs
+$DKLprinters = @{
+    "Library Printer 5" = "172.20.112.43"
+    "Library Printer 1" = "172.20.112.35"
+    "Library Printer 3" = "172.20.112.42"
+    "Library Printer 2" = "172.20.112.27"
+    "Library Printer 4" = "172.20.112.45"
+    "Library Printer 6" = "172.20.112.41"
+    "Library Printer 7" = "172.20.112.47"
+}
+
+Start-Sleep 2
+
+# Add driver using pnputil
+& "C:\Windows\pnputil.exe" /add-driver "`"$DriverInf`""
+
+
+Start-Sleep -Seconds 8
+
+# Collect existing printer ports
+$printerports = @(Get-PrinterPort | Select-Object -ExpandProperty Name)
+
+Write-Host "Printer installation process started..." -ForegroundColor Yellow
+Write-Host
+
+foreach ($PrinterName in $DKLprinters.Keys) {
+    Write-Progress -Activity "Installing $PrinterName..."
+    
+    $PrinterIP = $DKLprinters[$PrinterName]
+    $PrinterPortName = "IP_$PrinterIP"
+
+    # Add print port if missing
+    if ($printerports -notcontains $PrinterPortName) {
+        Add-PrinterPort -Name $PrinterPortName -PrinterHostAddress $PrinterIP
+    }
+
+    # Add driver and printer
+    Add-PrinterDriver -Name $DriverName
+    Add-Printer -Name $PrinterName -PortName $PrinterPortName -DriverName $DriverName
+
+    Write-Host "Finished adding $PrinterName" -ForegroundColor Cyan
+}
+
+# Create Xerox registry key
+CreateRegkey
+
+Write-Host
+Write-Host "✅ Completed installing DKL printers." -ForegroundColor Green
+Start-Sleep -Seconds 5

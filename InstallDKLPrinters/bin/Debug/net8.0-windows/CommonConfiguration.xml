@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigurationPolicy version="3.7.72.0">
+  <Feature Name="Color">
+    <Model Name="Xerox AltaLink C8055" UID="4A8DA980-710D-2EE4-9322-7B945476502C">
+      <Setting Name="Monochrome" Behavior="Default" />
+    </Model>
+  </Feature>
+  <Feature Name="SecurePrintOnly">
+    <Model Name="Xerox AltaLink C8055" UID="4A8DA980-710D-2EE4-9322-7B945476502C">
+      <Setting Name="Enabled" />
+    </Model>
+  </Feature>
+  <Feature Name="ReadCommunityName" />
+  <Feature Name="WriteCommunityName" />
+  <Feature Name="2-SidedPrinting">
+    <Model Name="Xerox AltaLink C8055" UID="4A8DA980-710D-2EE4-9322-7B945476502C">
+      <Setting Name="TwoSidedLongEdge" Behavior="EnforcedDefault" />
+    </Model>
+  </Feature>
+  <Feature Name="ImageCompression" />
+  <Feature Name="JobType" />
+  <Feature Name="DeviceCommunication" />
+  <Feature Name="JobIdentification" />
+  <Feature Name="ImagesPerPage" />
+  <Feature Name="Staple" />
+  <Feature Name="DraftMode" />
+  <Feature Name="NormalPrintJobType" />
+  <Feature Name="SecurePrintJobType" />
+  <Feature Name="DelayedPrintJobType" />
+  <Feature Name="SaveJobType" />
+  <Feature Name="FaxJobType" />
+  <Feature Name="PersonalPrintJobType" />
+  <Feature Name="ProofPrintJobType" />
+  <Feature Name="SavedJobType" />
+  <Feature Name="PrintWithJobType" />
+  <Feature Name="HoldJobType" />
+  <Feature Name="CreateBackgroundFormJobType" />
+  <Feature Name="HideJobName" />
+  <Feature Name="LDAPPrinting" />
+  <Feature Name="LDAPPrintingAuthentication" />
+  <Feature Name="LDAPPrintingPrompt" />
+  <Feature Name="LDAPPrintingExpiration" />
+  <Feature Name="LDAPPrimaryHost" />
+  <Feature Name="LDAPPrimaryPort" />
+  <Feature Name="LDAPSecondaryHost" />
+  <Feature Name="LDAPSecondaryPort" />
+  <Feature Name="LDAPRoot" />
+  <Feature Name="LDAPSearch" />
+  <Feature Name="LDAPReturn" />
+  <Feature Name="SavedSettings" />
+  <Feature Name="CloudPrinting" />
+  <Feature Name="CommonLoginServicesURL" />
+  <Feature Name="CompanyCode" />
+  <Feature Name="CloudTimeout" />
+  <Feature Name="BWSync" />
+  <Feature Name="ShareDiagnostics" />
+  <Feature Name="TrueTypeFont" />
+  <Feature Name="PullPrintPaperTrays" />
+  <Feature Name="PullPrintStapler" />
+  <Feature Name="PullPrintHolePunch" />
+  <Feature Name="PullPrintBooklet" />
+  <Feature Name="PullPrintProductivityPack" />
+  <Feature Name="PullPrintEnvelopeMedia" />
+  <Feature Name="PrintQuality" />
+  <Feature Name="IntelligentRotationPrintingSetting" />
+  <Feature Name="SubsequentRotationSettings" />
+  <Feature Name="PaperSizeSubsequentRotationSetting" />
+  <Feature Name="OrientationSubsequentRotationSetting" />
+  <Feature Name="AccountingSystem" />
+  <Feature Name="MaskUserID" />
+  <Feature Name="MaskBillingID" />
+  <Feature Name="MaskAccountID" />
+  <Feature Name="TrackingOptions" />
+  <Feature Name="PrintTimePrompt" />
+  <Feature Name="RememberLastEnteredCodes" />
+  <Feature Name="AccountingCodesUserID" />
+  <Feature Name="AccountingCodesUserIDPasscode" />
+  <Feature Name="AccountingCodesAccountType" />
+  <Feature Name="AccountingCodesAccountID" />
+  <Feature Name="AccountingCodesBillingID" />
+  <Feature Name="AccountingCodesBillingIDPasscode" />
+  <Feature Name="ICMMethod" />
+  <Feature Name="ModelOrder">
+    <Model Name="Xerox AltaLink C8055" UID="4A8DA980-710D-2EE4-9322-7B945476502C">
+      <Setting Name="" />
+    </Model>
+  </Feature>
+  <Feature Name="ModelType">
+    <Model Name="Xerox AltaLink C8055" UID="4A8DA980-710D-2EE4-9322-7B945476502C">
+      <Setting Name="PrinterModel" />
+    </Model>
+  </Feature>
+</ConfigurationPolicy>
