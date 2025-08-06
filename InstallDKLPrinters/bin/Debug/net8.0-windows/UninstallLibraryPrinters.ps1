@@ -15,13 +15,13 @@ Clear-Host
 
 # Hashtable of printers and their IPs
 $DKLprinters = @{
-    "Library Printer 5" = "172.20.112.43"
-    "Library Printer 1" = "172.20.112.35"
-    "Library Printer 3" = "172.20.112.42"
-    "Library Printer 2" = "172.20.112.27"
-    "Library Printer 4" = "172.20.112.45"
-    "Library Printer 6" = "172.20.112.41"
-    "Library Printer 7" = "172.20.112.47"
+    "Library Printer 5" = ""
+    "Library Printer 1" = "IP Address"
+    "Library Printer 3" = "IP Address"
+    "Library Printer 2" = "IP Address"
+    "Library Printer 4" = "IP Address"
+    "Library Printer 6" = "IP Address"
+    "Library Printer 7" = "IP Address"
 }
 
 $DriverName = "Xerox Global Print Driver PCL6"
